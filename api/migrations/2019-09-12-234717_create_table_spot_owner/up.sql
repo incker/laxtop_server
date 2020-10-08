@@ -1,0 +1,11 @@
+CREATE TABLE `spot_org`
+(
+    `user_id`    INT UNSIGNED NOT NULL,
+    `spot_id`    INT UNSIGNED NOT NULL,
+    `org_type`   VARCHAR(255) NOT NULL DEFAULT '',
+    `org_name`   VARCHAR(255) NOT NULL DEFAULT '',
+    `created_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`user_id`, `spot_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;

@@ -1,0 +1,1 @@
+DROP TABLE `spot_supplier`;

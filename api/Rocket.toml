@@ -1,0 +1,6 @@
+[global]
+address = "0.0.0.0"
+port = 3001
+
+[global.databases]
+laxtop_db = { url = "mysql://incker:xX03XfYTeDj5Xx@db/laxtop" }

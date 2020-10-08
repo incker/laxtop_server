@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/usr/src/app
+    networks:
+      - db_common_mysql
+    # fix warning of compilation but compilation time still same long
+    # next rust version try to build without CARGO_INCREMENTAL variable
+    environment:
+      - CARGO_INCREMENTAL=0
+      # - RUST_BACKTRACE=1
+    command: bash -c "cp /usr/src/app/nginx.conf /etc/nginx/nginx.conf && service nginx restart && npm install --prefix /usr/src/app/node_firebase && diesel setup && cargo watch -w ./src/ --poll -x run"
+networks:
+  db_common_mysql:
+    external: true
+
+# is external:
+# db:3306
+# external network hint:
+# https://stackoverflow.com/questions/38088279/communication-between-multiple-docker-compose-projects
+
+
+# https://github.com/ghotiphud/rust-web-starter

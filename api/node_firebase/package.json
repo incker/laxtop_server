@@ -1,0 +1,10 @@
+{
+  "name": "laxtop_firebase_node",
+  "description": "temporary solution to access google firebase admin and converting images to webp",
+  "version": "1.0.0",
+  "dependencies": {
+    "firebase": "^7.22.1",
+    "firebase-admin": "^9.2.0",
+    "sharp": "^0.26.1"
+  }
+}
