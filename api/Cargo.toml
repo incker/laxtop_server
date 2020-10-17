@@ -8,8 +8,8 @@ edition = "2018"
 rocket = { version = "0.4.5", default-features = false }
 diesel = { version = "1.4.5", features = ["mysql", "chrono"] }
 chrono = { version = "*", features = ["serde"] }
-serde = "1.0.116"
-serde_derive = "1.0.116"
+serde = "1.0.117"
+serde_derive = "1.0.117"
 serde_json = "1.0.59"
 rand = "0.7.3"
 regex = "1.4.1"
