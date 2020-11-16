@@ -2131,9 +2131,9 @@ dependencies = [
 
 [[package]]
 name = "tgbot"
-version = "0.10.0"
+version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc960cadd7950578b25e4a1430254404ea355f4a8e1563f956f10ecce0abd95a"
+checksum = "925366873b657220f72ed854405b5b256bad6d02f10a61a42a535ba8cbf9b475"
 dependencies = [
  "async-stream",
  "async-trait",
@@ -2222,9 +2222,9 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tokio"
-version = "0.2.22"
+version = "0.2.23"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5d34ca54d84bf2b5b4d7d31e901a8464f7b60ac145a284fba25ceb801f2ddccd"
+checksum = "a6d7ad61edd59bfcc7e80dababf0f4aed2e6d5e0ba1659356ae889752dfc12ff"
 dependencies = [
  "bytes 0.5.6",
  "fnv",
