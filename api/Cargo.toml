@@ -25,8 +25,8 @@ files_to_sub_dirs = { git = "https://github.com/incker/files_to_sub_dirs", rev =
 telegram_oauth = { git = "https://github.com/incker/telegram_oauth", rev = "4e0a0a4" }
 diesel_migrations = "1.4.0"
 image = "0.23.12"
-geo = "0.15.0"
-geo-types = "0.6.1"
+geo = "0.16.0"
+geo-types = "0.6.2"
 base64 = "0.13.0"
 
 [dependencies.rocket_contrib]
