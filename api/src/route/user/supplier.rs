@@ -35,7 +35,7 @@ fn get_promos(
                 supplier_ids.push(*supplier_id)
             }
         }
-        supplier_ids.sort();
+        supplier_ids.sort_unstable();
         supplier_ids.dedup();
         supplier_ids
     };

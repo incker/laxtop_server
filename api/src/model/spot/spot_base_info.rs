@@ -65,7 +65,7 @@ impl SpotBaseInfo {
             distance_spots.into_iter().map(|v| v.1).collect()
         };
 
-        image_ids.sort();
+        image_ids.sort_unstable();
         let hash_map_src = Image::get_urls_by_ids(&image_ids, conn);
 
         let mut res: Vec<SpotBaseInfo> = spots_with_images

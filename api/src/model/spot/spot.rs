@@ -44,7 +44,7 @@ impl Spot {
                 .iter()
                 .map(|(_id, _spot_address, image_id)| *image_id)
                 .collect();
-            image_ids.sort();
+            image_ids.sort_unstable();
             Image::get_urls_by_ids(&image_ids, conn)
         };
 
@@ -185,7 +185,7 @@ impl Spot {
             }
         }
 
-        covered_suppliers.sort();
+        covered_suppliers.sort_unstable();
         covered_suppliers.dedup();
 
         covered_suppliers

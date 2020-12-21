@@ -60,7 +60,7 @@ impl UserData {
             })
         }
 
-        active_suppliers.sort();
+        active_suppliers.sort_unstable();
         active_suppliers.dedup();
         let promo_ids = Promo::select_suppliers_active_promo_ids(&active_suppliers, conn);
 
@@ -71,7 +71,7 @@ impl UserData {
             all_supplier_ids.push(supplier_id);
         }
 
-        all_supplier_ids.sort();
+        all_supplier_ids.sort_unstable();
         all_supplier_ids.dedup();
 
         (spots, all_supplier_ids, promo_ids)

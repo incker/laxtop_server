@@ -70,7 +70,7 @@ pub fn snake_to_camel_case(snake: &str) -> Result<Cow<str>, ()> {
         } else {
             let mut camel = "".to_string();
             for word in snake.split('_') {
-                if &camel == "" {
+                if camel.is_empty() {
                     camel.push_str(word);
                 } else {
                     let (first, rest) = word.split_at(1);

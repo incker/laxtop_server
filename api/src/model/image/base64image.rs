@@ -1,11 +1,11 @@
+use diesel::MysqlConnection;
+use files_to_sub_dirs::FolderSwitcher;
+
 use std::fs::File;
 use std::io::{Cursor, Read};
 use std::process::Command;
 
-use diesel::MysqlConnection;
-use files_to_sub_dirs::FolderSwitcher;
-
-use crate::model::{new_file_sort_handler, Image, ImageSizeValidation};
+use crate::model::{Image, ImageSizeValidation, new_file_sort_handler};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Base64Image {
@@ -61,6 +61,7 @@ impl Base64Image {
             let mut rng = thread_rng();
             iter::repeat(())
                 .map(|()| rng.sample(Alphanumeric))
+                .map(char::from)
                 .take(20)
                 .collect()
         };

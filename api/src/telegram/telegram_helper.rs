@@ -26,7 +26,7 @@ fn format_telegram_invoice(data: Vec<(String, u32)>, message: &mut String) {
 
     for (name, amount) in data {
         message.push_str("__________________________________|____");
-        message.push_str("\n");
+        message.push('\n');
         let mut amount_printed = false;
 
         for lines in text_mono_rectangle.chunk_text(&name) {
@@ -39,7 +39,7 @@ fn format_telegram_invoice(data: Vec<(String, u32)>, message: &mut String) {
                 message.push_str(&amount.to_string());
             }
 
-            message.push_str("\n");
+            message.push('\n');
         }
 
         // that case when name is empty

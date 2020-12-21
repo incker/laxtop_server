@@ -1,7 +1,7 @@
-use std::iter::Iterator;
-
 use chrono::NaiveDateTime;
-use diesel::{update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
+use diesel::{ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl, update};
+
+use std::iter::Iterator;
 
 use crate::guard;
 use crate::model::OwnerType;
@@ -101,7 +101,7 @@ impl Session {
 
     pub fn update_expired_if_needed(&self, conn: &MysqlConnection) {
         if let Some(new_expired_at) =
-            Session::check_need_prolongation(&self.expired_at, self.owner_type.session_duration())
+        Session::check_need_prolongation(&self.expired_at, self.owner_type.session_duration())
         {
             use crate::schema::session::dsl;
             let target = dsl::hash.eq(&self.hash);
@@ -128,11 +128,14 @@ impl Session {
     pub fn generate_session(session_len: usize) -> String {
         use rand::distributions::Alphanumeric;
         use rand::{thread_rng, Rng};
+        use std::iter;
 
         // code from here:
-        // https://rust-lang-nursery.github.io/rust-cookbook/algorithms/randomness.html
-        thread_rng()
-            .sample_iter(&Alphanumeric)
+        // https://rust-random.github.io/book/update-0.8.html#distributions
+        let mut rng = thread_rng();
+        iter::repeat(())
+            .map(|()| rng.sample(Alphanumeric))
+            .map(char::from)
             .take(session_len)
             .collect()
     }

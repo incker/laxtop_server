@@ -40,7 +40,7 @@ impl PromoGroup {
             if let Some(promo_group) = res.get_mut(&group_id) {
                 promo_group.cats.insert(id, name);
             } else {
-                res.entry(1u32).or_insert(PromoGroup::default()).cats.insert(id, name);
+                res.entry(1u32).or_insert_with(PromoGroup::default).cats.insert(id, name);
             }
         }
 

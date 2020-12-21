@@ -59,7 +59,7 @@ fn handle_telegram_text(
         if command == "/start" {
             if supplier.is_some() {
                 return Some("Вы уже подписаны на уведомления".to_string());
-            } else if data != "" {
+            } else if !data.is_empty() {
                 let found_supplier: Option<guard::SupplierId> =
                     Session::get_telegram_session(data, conn);
                 if let Some(guard::SupplierId(supplier_id)) = found_supplier {

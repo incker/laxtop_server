@@ -20,7 +20,7 @@ fn set_user_name(
     db_conn: DbConn,
 ) -> Result<Json<DataWrapper<String>>, Json<RespErrors>> {
     let user_name = user_name.into_inner().data();
-    if user_name == "" {
+    if user_name.is_empty() {
         Err(Json(RespErrors::new_error((
             "name".into(),
             "Name can not be empty".into(),
