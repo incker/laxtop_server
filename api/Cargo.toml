@@ -11,7 +11,7 @@ chrono = { version = "*", features = ["serde"] }
 serde = "1.0.118"
 serde_derive = "1.0.118"
 serde_json = "1.0.61"
-rand = "0.8.0"
+rand = "0.8.1"
 regex = "1.4.2"
 validator = "0.12.0"
 validator_derive = "0.12.0"
