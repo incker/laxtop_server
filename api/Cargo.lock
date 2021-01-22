@@ -306,9 +306,9 @@ dependencies = [
 
 [[package]]
 name = "crypto-mac"
-version = "0.9.1"
+version = "0.10.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "58bcd97a54c7ca5ce2f6eb16f6bede5b0ab5f0055fedc17d2f0b4466e21671ca"
+checksum = "4857fd85a0c34b3c3297875b747c1e02e06b6a0ea32dd892d8192b9ce0813ea6"
 dependencies = [
  "generic-array 0.14.4",
  "subtle",
@@ -775,9 +775,9 @@ checksum = "644f9158b2f133fd50f5fb3242878846d9eb792e445c893805ff0e3824006e35"
 
 [[package]]
 name = "hmac"
-version = "0.9.0"
+version = "0.10.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "deae6d9dbb35ec2c502d62b8f7b1c000a0822c3b0794ba36b3149c0a1c840dff"
+checksum = "c1441c6b1e930e2817404b5046f1f989899143a12bf92de603b69f4e0aee1e15"
 dependencies = [
  "crypto-mac",
  "digest",
@@ -2140,7 +2140,7 @@ dependencies = [
 [[package]]
 name = "telegram_oauth"
 version = "0.1.0"
-source = "git+https://github.com/incker/telegram_oauth?rev=4e0a0a4#4e0a0a42d08305073534f3fc4cc8434aea95862b"
+source = "git+https://github.com/incker/telegram_oauth?rev=2cdc0d2#2cdc0d200de56dc6df6ee4aff2d8b7001ba64d76"
 dependencies = [
  "hex",
  "hmac",
