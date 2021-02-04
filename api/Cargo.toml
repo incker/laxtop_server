@@ -24,7 +24,7 @@ sha2 = "0.9.3"
 files_to_sub_dirs = { git = "https://github.com/incker/files_to_sub_dirs", rev = "2b3ddbc" }
 telegram_oauth = { git = "https://github.com/incker/telegram_oauth", rev = "711360b" }
 diesel_migrations = "1.4.0"
-image = "0.23.12"
+image = "0.23.13"
 geo = "0.17.0"
 geo-types = "0.7.0"
 base64 = "0.13.0"
