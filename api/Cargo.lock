@@ -816,9 +816,9 @@ dependencies = [
 
 [[package]]
 name = "hyper"
-version = "0.14.2"
+version = "0.14.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12219dc884514cb4a6a03737f4413c0e01c23a1b059b0156004b23f1e19dccbe"
+checksum = "e8e946c2b1349055e0b72ae281b238baf1a3ea7307c7e9f9d64673bdd9c26ac7"
 dependencies = [
  "bytes",
  "futures-channel",
@@ -845,7 +845,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5f9f7a97316d44c0af9b0301e65010573a853a9fc97046d7331d7f6bc0fd5a64"
 dependencies = [
  "futures-util",
- "hyper 0.14.2",
+ "hyper 0.14.4",
  "log 0.4.14",
  "rustls",
  "tokio",
@@ -860,7 +860,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d6183ddfa99b85da61a140bea0efc93fdf56ceaa041b37d553518030827f9905"
 dependencies = [
  "bytes",
- "hyper 0.14.2",
+ "hyper 0.14.4",
  "native-tls",
  "tokio",
  "tokio-native-tls",
@@ -879,9 +879,9 @@ dependencies = [
 
 [[package]]
 name = "idna"
-version = "0.2.0"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "02e2673c30ee86b5b96a9cb52ad15718aa1f966f5ab9ad54a8b95d5ca33120a9"
+checksum = "de910d521f7cc3135c4de8db1cb910e0b5ed1dc6f57c381cd07e8e661ce10094"
 dependencies = [
  "matches",
  "unicode-bidi",
@@ -1740,7 +1740,7 @@ dependencies = [
  "futures-util",
  "http",
  "http-body",
- "hyper 0.14.2",
+ "hyper 0.14.4",
  "hyper-rustls",
  "hyper-tls",
  "ipnet",
@@ -2002,9 +2002,9 @@ dependencies = [
 
 [[package]]
 name = "serde_json"
-version = "1.0.61"
+version = "1.0.62"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fceb2595057b6891a4ee808f70054bd2d12f0e97f1cbb78689b59f676df325a"
+checksum = "ea1c6153794552ea7cf7cf63b1231a25de00ec90db326ba6264440fa08e31486"
 dependencies = [
  "itoa",
  "ryu",
@@ -2151,7 +2151,7 @@ dependencies = [
  "derive_more",
  "futures-util",
  "http",
- "hyper 0.14.2",
+ "hyper 0.14.4",
  "log 0.4.14",
  "mime 0.3.16",
  "mime_guess",
@@ -2231,9 +2231,9 @@ checksum = "cda74da7e1a664f795bb1f8a87ec406fb89a02522cf6e50620d016add6dbbf5c"
 
 [[package]]
 name = "tokio"
-version = "1.1.1"
+version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6714d663090b6b0acb0fa85841c6d66233d150cdb2602c8f9b8abb03370beb3f"
+checksum = "e8190d04c665ea9e6b6a0dc45523ade572c088d2e6566244c1122671dbf4ae3a"
 dependencies = [
  "autocfg",
  "bytes",
@@ -2432,7 +2432,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5909f2b0817350449ed73e8bcd81c8c3c8d9a7a5d8acba4b27db277f1868976e"
 dependencies = [
  "form_urlencoded",
- "idna 0.2.0",
+ "idna 0.2.1",
  "matches",
  "percent-encoding 2.1.0",
 ]
@@ -2443,7 +2443,7 @@ version = "0.12.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "841d6937c33ec6039d8071bcf72933146b5bbe378d645d8fa59bdadabfc2a249"
 dependencies = [
- "idna 0.2.0",
+ "idna 0.2.1",
  "lazy_static",
  "regex",
  "serde",
