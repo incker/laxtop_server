@@ -1,11 +1,10 @@
-use chrono::{Datelike, Duration, NaiveDate, NaiveDateTime, Timelike, Utc};
+use chrono::{Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
 use diesel::{
     insert_or_ignore_into, update, BoolExpressionMethods, ExpressionMethods, JoinOnDsl,
     MysqlConnection, QueryDsl, RunQueryDsl,
 };
 
-use crate::model::{Image, ImageRouter, Location, Session, SupplierStatus};
-use crate::schema::{promo, supplier};
+use crate::schema::promo;
 
 const PROMO_LIFETIME_DAYS_AMOUNT: i64 = 14;
 
@@ -28,7 +27,7 @@ impl Promo {
         supplier_ids: &[u32],
         conn: &MysqlConnection,
     ) -> Vec<u32> {
-        use crate::schema::{image, promo};
+        use crate::schema::promo;
         promo::table
             .filter(
                 promo::dsl::supplier_id

@@ -1,4 +1,3 @@
-use chrono::{Datelike, Timelike, Utc};
 use diesel::MysqlConnection;
 
 use crate::model::Promo;

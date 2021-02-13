@@ -1,7 +1,6 @@
 use diesel::{
     update, BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
 };
-use geo::Polygon;
 
 use crate::model::Location;
 

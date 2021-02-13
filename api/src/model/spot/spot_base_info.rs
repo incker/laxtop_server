@@ -2,7 +2,7 @@ use diesel::{BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl
 use geo::prelude::VincentyDistance;
 use geo::{Coordinate, Point};
 
-use crate::model::{Image, ImageRouter, Spot, SpotAddress, SpotStatus, SupplierBounding};
+use crate::model::{Spot, SpotAddress, SpotStatus, SupplierBounding};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpotBaseInfo {

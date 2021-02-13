@@ -1,4 +1,3 @@
-use chrono::{Datelike, NaiveDate, NaiveDateTime, Timelike, Utc};
 use diesel::{
     sql_query, update, Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
 };

@@ -1,6 +1,6 @@
 use diesel::sql_types::{Tinyint, Unsigned, Varchar};
 use diesel::MysqlConnection;
-use validator::{Validate, ValidationError};
+use validator::ValidationError;
 
 use crate::base::MaxCleaner;
 use crate::model::{NewProduct, Unit};

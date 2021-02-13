@@ -8,9 +8,7 @@ use geo::{Coordinate, LineString, Point, Polygon};
 
 use std::collections::HashMap;
 
-use crate::model::{
-    Image, ImageRouter, Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot,
-};
+use crate::model::{Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Spot {

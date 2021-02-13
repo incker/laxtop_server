@@ -1,9 +1,5 @@
-use diesel::{
-    insert_into, update, BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl,
-    RunQueryDsl,
-};
+use diesel::{insert_into, update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
-use crate::base::RespErrors;
 use crate::model::{OwnerType, RespApiKey, Session, Supplier};
 use crate::schema::telegram_user;
 

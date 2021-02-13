@@ -1,9 +1,9 @@
 use std::ops::Deref;
 
 use diesel::MysqlConnection;
-use rocket::http::{ContentType, Status};
+use rocket::http::Status;
 use rocket::request::{self, FromRequest};
-use rocket::{Data, Outcome, Request};
+use rocket::{Outcome, Request};
 use rocket_contrib::json::Json;
 
 use crate::base::RespErrors;

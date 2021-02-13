@@ -1,17 +1,12 @@
 use diesel::result::DatabaseErrorKind;
 use diesel::result::Error::DatabaseError;
-use diesel::{
-    BoolExpressionMethods, Connection, ExpressionMethods, MysqlConnection, QueryDsl, QueryResult,
-    RunQueryDsl,
-};
-use sha2::{Digest, Sha256};
+use diesel::{Connection, ExpressionMethods, MysqlConnection, QueryDsl, QueryResult, RunQueryDsl};
+use sha2::Digest;
 
-use std::collections::HashMap;
 use std::fs::{self, File};
-use std::io;
-use std::io::{Cursor, Read, Seek, SeekFrom, Write};
+
+use std::io::Write;
 use std::iter::Iterator;
-use std::path::PathBuf;
 
 use crate::model::image::get_image_format::get_image_format;
 use crate::model::ImageRouter;

@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use diesel::{update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
-use validator::{Validate, ValidationError};
+use validator::ValidationError;
 
 use crate::base::{Cleaner, MaxCleaner};
 use crate::model::Supplier;

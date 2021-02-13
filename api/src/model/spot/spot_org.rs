@@ -5,7 +5,6 @@ use diesel::{
     RunQueryDsl,
 };
 use rocket_contrib::json::Json;
-use validator::Validate;
 
 use crate::base::{RespErrors, ValidateFormatter};
 use crate::schema::spot_org;

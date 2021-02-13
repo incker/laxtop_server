@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use diesel::{BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
+use diesel::{ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 use crate::schema::promo_cat;
 

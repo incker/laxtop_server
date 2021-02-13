@@ -1,4 +1,3 @@
-use chrono::{NaiveDate, NaiveDateTime};
 use diesel::{sql_query, update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 use crate::model::{Location, Session, SupplierStatus};

@@ -1,5 +1,4 @@
 use crate::base::MaxCleaner;
-use validator::Validate;
 
 #[derive(Debug, Queryable, PartialEq, Serialize, Deserialize, Validate)]
 pub struct SpotAddress {

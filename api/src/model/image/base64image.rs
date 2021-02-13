@@ -1,8 +1,6 @@
 use diesel::MysqlConnection;
 
-use std::fs::File;
-use std::io::{Cursor, Read};
-use std::process::Command;
+use std::io::Cursor;
 
 use crate::model::{Image, ImageSizeValidation};
 
