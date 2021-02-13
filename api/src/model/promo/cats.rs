@@ -10,7 +10,6 @@ pub struct PromoGroup {
     cats: HashMap<u32, String>,
 }
 
-
 impl Default for PromoGroup {
     fn default() -> Self {
         PromoGroup {
@@ -20,7 +19,6 @@ impl Default for PromoGroup {
     }
 }
 
-
 impl PromoGroup {
     pub fn select_all(conn: &MysqlConnection) -> Vec<PromoGroup> {
         let groups = PromoGroup::select_groups(conn);
@@ -29,18 +27,23 @@ impl PromoGroup {
         let mut res = HashMap::<u32, PromoGroup>::with_capacity(groups.len());
 
         for (id, name) in groups {
-            res.insert(id, PromoGroup { name, cats: HashMap::default() });
+            res.insert(
+                id,
+                PromoGroup {
+                    name,
+                    cats: HashMap::default(),
+                },
+            );
         }
 
-        for Cat {
-            id,
-            group_id,
-            name,
-        } in cats {
+        for Cat { id, group_id, name } in cats {
             if let Some(promo_group) = res.get_mut(&group_id) {
                 promo_group.cats.insert(id, name);
             } else {
-                res.entry(1u32).or_insert_with(PromoGroup::default).cats.insert(id, name);
+                res.entry(1u32)
+                    .or_insert_with(PromoGroup::default)
+                    .cats
+                    .insert(id, name);
             }
         }
 
@@ -50,7 +53,6 @@ impl PromoGroup {
         }
         v
     }
-
 
     pub fn select_groups(conn: &MysqlConnection) -> Vec<(u32, String)> {
         use crate::schema::promo_group::{self, dsl};
@@ -62,7 +64,6 @@ impl PromoGroup {
     }
 }
 
-
 #[derive(Debug, Serialize, Deserialize, Default, Queryable, Insertable)]
 #[table_name = "promo_cat"]
 pub struct Cat {
@@ -71,12 +72,9 @@ pub struct Cat {
     name: String,
 }
 
-
 impl Cat {
     pub fn select_all(conn: &MysqlConnection) -> Vec<Cat> {
-        promo_cat::table
-            .load(conn)
-            .unwrap()
+        promo_cat::table.load(conn).unwrap()
     }
 
     pub fn check_ids_existence(ids: &[u32], conn: &MysqlConnection) -> Vec<u32> {

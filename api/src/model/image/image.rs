@@ -1,6 +1,9 @@
-use diesel::{BoolExpressionMethods, Connection, ExpressionMethods, MysqlConnection, QueryDsl, QueryResult, RunQueryDsl};
 use diesel::result::DatabaseErrorKind;
 use diesel::result::Error::DatabaseError;
+use diesel::{
+    BoolExpressionMethods, Connection, ExpressionMethods, MysqlConnection, QueryDsl, QueryResult,
+    RunQueryDsl,
+};
 use sha2::{Digest, Sha256};
 
 use std::collections::HashMap;
@@ -73,7 +76,6 @@ impl Image {
         Ok(id)
     }
 
-
     pub fn save_file(id: u32, image_buffer: Vec<u8>) {
         let mut image_router = ImageRouter::new(IMAGE_STORAGE_PATH, id);
 
@@ -85,7 +87,6 @@ impl Image {
 
         // todo thumbnail and so on...
     }
-
 
     // TODO is outdated image path
     pub fn default_test_spot_image() -> String {

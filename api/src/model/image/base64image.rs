@@ -17,8 +17,8 @@ impl Base64Image {
         conn: &MysqlConnection,
         validation: ImageSizeValidation,
     ) -> Result<u32, String> {
-        let buffer = base64::decode(&self.base64)
-            .map_err(|decode_err| format!("{:?}", decode_err))?;
+        let buffer =
+            base64::decode(&self.base64).map_err(|decode_err| format!("{:?}", decode_err))?;
 
         if validation != ImageSizeValidation::None {
             let res = image::io::Reader::new(Cursor::new(&buffer))

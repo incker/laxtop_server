@@ -18,25 +18,21 @@ impl ImageRouter {
         ImageRouter(res)
     }
 
-
     fn some_func(&mut self, ch: char) -> &str {
         let l = self.0.len() - 15;
         self.0.replace_range(l..l + 1, &String::from(ch));
         &self.0
     }
 
-
     pub fn dir_original(&mut self) -> &str {
         let l = self.0.len() - 6;
         &self.original()[..l]
     }
 
-
     pub fn dir_thumbnail(&mut self) -> &str {
         let l = self.0.len() - 6;
         &self.thumbnail()[..l]
     }
-
 
     pub fn original(&mut self) -> &str {
         self.some_func('o')
@@ -46,7 +42,6 @@ impl ImageRouter {
         self.some_func('t')
     }
 }
-
 
 #[cfg(test)]
 mod tests {

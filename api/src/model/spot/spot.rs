@@ -1,14 +1,16 @@
 use diesel::{
-    BoolExpressionMethods, ExpressionMethods, JoinOnDsl, MysqlConnection, QueryDsl, RunQueryDsl,
-    update,
+    update, BoolExpressionMethods, ExpressionMethods, JoinOnDsl, MysqlConnection, QueryDsl,
+    RunQueryDsl,
 };
-use geo::{Coordinate, LineString, Point, Polygon};
 use geo::algorithm::contains::Contains;
 use geo::prelude::VincentyDistance;
+use geo::{Coordinate, LineString, Point, Polygon};
 
 use std::collections::HashMap;
 
-use crate::model::{Image, ImageRouter, Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot};
+use crate::model::{
+    Image, ImageRouter, Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot,
+};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Spot {

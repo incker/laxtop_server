@@ -16,7 +16,8 @@ pub struct UserData {
 
 impl UserData {
     pub fn new(user_id: u32, conn: &MysqlConnection) -> Result<Self, (String, String)> {
-        let (spots, supplier_ids, promo_ids) = UserData::get_user_spots_and_all_suppliers(user_id, conn);
+        let (spots, supplier_ids, promo_ids) =
+            UserData::get_user_spots_and_all_suppliers(user_id, conn);
         // select first spot as users main spot (any way no functionality to manage 2 spots for one user)
         let spot_id = if let Some(spot) = spots.first() {
             spot.id

@@ -1,5 +1,5 @@
 use chrono::{NaiveDate, NaiveDateTime};
-use diesel::{ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl, sql_query, update};
+use diesel::{sql_query, update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 use crate::model::{Location, Session, SupplierStatus};
 use crate::schema::supplier;

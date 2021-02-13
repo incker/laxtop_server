@@ -1,5 +1,5 @@
 use chrono::NaiveDateTime;
-use diesel::{ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl, update};
+use diesel::{update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 use std::iter::Iterator;
 
@@ -66,16 +66,13 @@ impl Session {
         Some(s)
     }
 
-    pub fn login_from_session(
-        api_key: &str,
-        conn: &MysqlConnection,
-    ) -> Option<guard::ApiKeyLogin> {
+    pub fn login_from_session(api_key: &str, conn: &MysqlConnection) -> Option<guard::ApiKeyLogin> {
         let s: Session = Session::select_session(api_key, conn)?;
         match s.owner_type {
             OwnerType::User => Some(guard::ApiKeyLogin::User(guard::UserId(s.owner_id))),
-            OwnerType::Supplier => Some(guard::ApiKeyLogin::Supplier(guard::SupplierId(
-                s.owner_id,
-            ))),
+            OwnerType::Supplier => {
+                Some(guard::ApiKeyLogin::Supplier(guard::SupplierId(s.owner_id)))
+            }
             OwnerType::Admin => Some(guard::ApiKeyLogin::Admin(guard::AdminId(s.owner_id))),
             OwnerType::Agent => Some(guard::ApiKeyLogin::Agent(guard::AgentId(s.owner_id))),
             OwnerType::Telegram => {
@@ -101,7 +98,7 @@ impl Session {
 
     pub fn update_expired_if_needed(&self, conn: &MysqlConnection) {
         if let Some(new_expired_at) =
-        Session::check_need_prolongation(&self.expired_at, self.owner_type.session_duration())
+            Session::check_need_prolongation(&self.expired_at, self.owner_type.session_duration())
         {
             use crate::schema::session::dsl;
             let target = dsl::hash.eq(&self.hash);

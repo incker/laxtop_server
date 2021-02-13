@@ -1,7 +1,7 @@
 use tgbot::{
-    Api,
-    Config,
-    methods::{SendMessage, SetWebhook}, types::ParseMode,
+    methods::{SendMessage, SetWebhook},
+    types::ParseMode,
+    Api, Config,
 };
 use tokio::runtime::Runtime;
 

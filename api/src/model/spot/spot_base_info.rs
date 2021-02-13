@@ -1,6 +1,6 @@
 use diesel::{BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
-use geo::{Coordinate, Point};
 use geo::prelude::VincentyDistance;
+use geo::{Coordinate, Point};
 
 use crate::model::{Image, ImageRouter, Spot, SpotAddress, SpotStatus, SupplierBounding};
 
@@ -64,12 +64,10 @@ impl SpotBaseInfo {
 
         let mut res: Vec<SpotBaseInfo> = spots_with_images
             .into_iter()
-            .map(|(id, address, image_id)| {
-                SpotBaseInfo {
-                    id,
-                    address,
-                    image_id,
-                }
+            .map(|(id, address, image_id)| SpotBaseInfo {
+                id,
+                address,
+                image_id,
             })
             .collect();
 

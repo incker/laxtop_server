@@ -1,7 +1,9 @@
 use chrono::{Datelike, NaiveDate, NaiveDateTime, Timelike, Utc};
-use diesel::{Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl, sql_query, update};
+use diesel::{
+    sql_query, update, Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
+};
 
-use crate::model::{ANNUAL_PROMO_AMOUNT, Location, Promo, Session, SupplierStatus};
+use crate::model::{Location, Promo, Session, SupplierStatus, ANNUAL_PROMO_AMOUNT};
 
 pub struct PromoCatUpdated(NaiveDateTime);
 

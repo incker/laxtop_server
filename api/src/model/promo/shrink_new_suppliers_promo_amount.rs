@@ -1,7 +1,9 @@
 use chrono::{Datelike, NaiveDate, NaiveDateTime, Timelike, Utc};
-use diesel::{Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl, sql_query, update};
+use diesel::{
+    sql_query, update, Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
+};
 
-use crate::model::{ANNUAL_PROMO_AMOUNT, Location, Promo, Session, SupplierStatus};
+use crate::model::{Location, Promo, Session, SupplierStatus, ANNUAL_PROMO_AMOUNT};
 use crate::schema::supplier;
 
 /*
@@ -24,14 +26,19 @@ pub fn shrink_new_suppliers_promo_amount(conn: &MysqlConnection) {
     });
 }
 
-
 fn get_suppliers_promo_amount_to_skip(conn: &MysqlConnection) -> Vec<(u32, i32)> {
     let year = current_year();
     let supplier_creations = select_suppliers_by_created_at(year, conn);
 
-    supplier_creations.into_iter().map(|(supplier_id, created_at)| {
-        (supplier_id, count_amount_of_promos_to_skip(ANNUAL_PROMO_AMOUNT, created_at.month() as i32))
-    }).collect()
+    supplier_creations
+        .into_iter()
+        .map(|(supplier_id, created_at)| {
+            (
+                supplier_id,
+                count_amount_of_promos_to_skip(ANNUAL_PROMO_AMOUNT, created_at.month() as i32),
+            )
+        })
+        .collect()
 }
 
 /// Get suppliers that was registered in a year, to shrink amount of available promos
@@ -46,7 +53,6 @@ fn select_suppliers_by_created_at(year: i32, conn: &MysqlConnection) -> Vec<(u32
         .load::<(u32, NaiveDateTime)>(conn)
         .unwrap()
 }
-
 
 fn current_year() -> i32 {
     let (_is_common_era, year) = Utc::now().year_ce();

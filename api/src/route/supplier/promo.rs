@@ -4,7 +4,9 @@ use rocket_contrib::json::Json;
 
 use crate::base::RespErrors;
 use crate::guard::{DbConn, SupplierId};
-use crate::model::{Base64Image, DataWrapper, ImageSizeValidation, NewPromo, Promo, PromoGroup, SupplierPromoData};
+use crate::model::{
+    Base64Image, DataWrapper, ImageSizeValidation, NewPromo, Promo, PromoGroup, SupplierPromoData,
+};
 
 #[post("/set-promo", format = "application/json", data = "<new_promo>")]
 fn set_promo(
@@ -13,14 +15,17 @@ fn set_promo(
     db_conn: DbConn,
 ) -> Result<Json<DataWrapper<bool>>, Json<RespErrors>> {
     if let Some(_id) = Promo::select_day_old_promo_id(supplier_id.0, db_conn.deref()) {
-        return Err(Json(RespErrors::new_error(("promo".into(), "Add 2 promos in 24 hours is not allowed".into()))));
+        return Err(Json(RespErrors::new_error((
+            "promo".into(),
+            "Add 2 promos in 24 hours is not allowed".into(),
+        ))));
     }
-    new_promo.save(supplier_id.0, db_conn.deref())
+    new_promo
+        .save(supplier_id.0, db_conn.deref())
         .map_err(|err| Json(RespErrors::new_error(("image".into(), err))))?;
 
     Ok(Json(DataWrapper::new(true)))
 }
-
 
 #[get("/get-promo-data")]
 fn get_promo_data(supplier_id: SupplierId, db_conn: DbConn) -> Json<SupplierPromoData> {

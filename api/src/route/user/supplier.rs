@@ -18,12 +18,8 @@ fn get_supplier_info(
     Ok(Json(supplier_info))
 }
 
-
 #[get("/get-promos")]
-fn get_promos(
-    user_id: UserId,
-    db_conn: DbConn,
-) -> Json<DataWrapper<Vec<Promo>>> {
+fn get_promos(user_id: UserId, db_conn: DbConn) -> Json<DataWrapper<Vec<Promo>>> {
     let user_id = user_id.0;
 
     let supplier_ids = {
