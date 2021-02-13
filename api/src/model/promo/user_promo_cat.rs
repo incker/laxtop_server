@@ -1,6 +1,5 @@
 use diesel::{
-    delete, AsExpression, BoolExpressionMethods, Expression, ExpressionMethods, MysqlConnection,
-    QueryDsl, RunQueryDsl,
+    delete, BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
 };
 
 use crate::model::promo::cats::Cat;

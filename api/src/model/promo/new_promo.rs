@@ -1,11 +1,7 @@
-use diesel::{
-    sql_query, update, Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl,
-};
+use diesel::MysqlConnection;
 
 use crate::model::Base64Image;
-use crate::model::{
-    ImageSizeValidation, Location, Promo, Session, SupplierStatus, ANNUAL_PROMO_AMOUNT,
-};
+use crate::model::{ImageSizeValidation, Promo};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NewPromo {

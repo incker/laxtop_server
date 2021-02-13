@@ -1,8 +1,5 @@
 use chrono::{Datelike, Duration, NaiveDate, NaiveDateTime, Utc};
-use diesel::{
-    insert_or_ignore_into, update, BoolExpressionMethods, ExpressionMethods, JoinOnDsl,
-    MysqlConnection, QueryDsl, RunQueryDsl,
-};
+use diesel::{BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 use crate::schema::promo;
 
@@ -27,7 +24,6 @@ impl Promo {
         supplier_ids: &[u32],
         conn: &MysqlConnection,
     ) -> Vec<u32> {
-        use crate::schema::promo;
         promo::table
             .filter(
                 promo::dsl::supplier_id
@@ -42,7 +38,6 @@ impl Promo {
     }
 
     pub fn select_day_old_promo_id(supplier_id: u32, conn: &MysqlConnection) -> Option<u32> {
-        use crate::schema::promo;
         let one_day_ago = Utc::now()
             .naive_utc()
             .checked_sub_signed(Duration::days(1))
@@ -63,7 +58,6 @@ impl Promo {
         supplier_ids: &[u32],
         conn: &MysqlConnection,
     ) -> Vec<Self> {
-        use crate::schema::promo;
         promo::table
             .filter(
                 promo::dsl::supplier_id
@@ -89,7 +83,7 @@ impl Promo {
     }
 
     pub fn count_annual_supplier_promos(supplier_id: u32, conn: &MysqlConnection) -> i32 {
-        use crate::schema::promo::{self, dsl};
+        use crate::schema::promo::dsl;
         let year = Promo::current_year();
         // month is 2 cause no need to shrink promo amount for suppliers registered in january
         let date = NaiveDate::from_ymd(year, 1, 1).and_hms(0, 0, 0);
@@ -108,7 +102,7 @@ impl Promo {
     }
 
     pub fn insert(supplier_id: u32, cat_id: u32, image_id: u32, conn: &MysqlConnection) {
-        use crate::schema::promo::{self, dsl};
+        use crate::schema::promo::dsl;
         diesel::insert_into(promo::table)
             .values((
                 dsl::supplier_id.eq(supplier_id),
@@ -120,7 +114,7 @@ impl Promo {
     }
 
     pub fn insert_dummy_promo(supplier_id: u32, conn: &MysqlConnection) {
-        use crate::schema::promo::{self, dsl};
+        use crate::schema::promo::dsl;
         let year = Promo::current_year();
         // month is 2 cause no need to shrink promo amount for suppliers registered in january
         let date = NaiveDate::from_ymd(year, 1, 1).and_hms(0, 0, 0);

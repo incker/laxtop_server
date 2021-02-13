@@ -1,12 +1,10 @@
-use std::ops::Deref;
-
 use rocket_contrib::json::Json;
+
+use std::ops::Deref;
 
 use crate::base::RespErrors;
 use crate::guard::{DbConn, SupplierId};
-use crate::model::{
-    Base64Image, DataWrapper, ImageSizeValidation, NewPromo, Promo, PromoGroup, SupplierPromoData,
-};
+use crate::model::{DataWrapper, NewPromo, Promo, PromoGroup, SupplierPromoData};
 
 #[post("/set-promo", format = "application/json", data = "<new_promo>")]
 fn set_promo(

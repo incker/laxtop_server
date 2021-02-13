@@ -1,5 +1,5 @@
-use chrono::{Datelike, NaiveDate, NaiveDateTime, Timelike, Utc};
-use diesel::{update, Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
+use chrono::NaiveDateTime;
+use diesel::{update, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
 pub struct PromoCatUpdated(NaiveDateTime);
 

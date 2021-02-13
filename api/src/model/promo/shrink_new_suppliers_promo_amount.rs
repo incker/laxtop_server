@@ -1,7 +1,7 @@
 use chrono::{Datelike, NaiveDate, NaiveDateTime, Utc};
 use diesel::{Connection, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
 
-use crate::model::{Location, Promo, Session, SupplierStatus, ANNUAL_PROMO_AMOUNT};
+use crate::model::{Promo, ANNUAL_PROMO_AMOUNT};
 use crate::schema::supplier;
 
 /*
