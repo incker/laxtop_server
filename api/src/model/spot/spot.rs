@@ -1,14 +1,14 @@
-use std::collections::HashMap;
-
 use diesel::{
-    update, BoolExpressionMethods, ExpressionMethods, JoinOnDsl, MysqlConnection, QueryDsl,
-    RunQueryDsl,
+    BoolExpressionMethods, ExpressionMethods, JoinOnDsl, MysqlConnection, QueryDsl, RunQueryDsl,
+    update,
 };
+use geo::{Coordinate, LineString, Point, Polygon};
 use geo::algorithm::contains::Contains;
 use geo::prelude::VincentyDistance;
-use geo::{Coordinate, LineString, Point, Polygon};
 
-use crate::model::{Image, Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot};
+use std::collections::HashMap;
+
+use crate::model::{Image, ImageRouter, Location, OwnerType, SpotAddress, SpotOrg, SpotSupplier, UserSpot};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Spot {
@@ -16,8 +16,8 @@ pub struct Spot {
     pub address: SpotAddress,
     #[serde(rename = "spotOrg")]
     pub spot_org: SpotOrg,
-    #[serde(rename = "imageUrl")]
-    pub image_url: String,
+    #[serde(rename = "imageId")]
+    pub image_id: u32,
 }
 
 impl Spot {
@@ -39,24 +39,12 @@ impl Spot {
         let mut spot_org_hash_map: HashMap<u32, SpotOrg> =
             SpotOrg::select_by_ids(user_id, &spot_ids, conn);
 
-        let hash_map_src = {
-            let mut image_ids: Vec<u32> = rows
-                .iter()
-                .map(|(_id, _spot_address, image_id)| *image_id)
-                .collect();
-            image_ids.sort_unstable();
-            Image::get_urls_by_ids(&image_ids, conn)
-        };
-
         rows.into_iter()
             .map(|(id, spot_address, image_id)| Spot {
                 id,
                 address: spot_address,
                 spot_org: spot_org_hash_map.remove(&id).unwrap_or_default(),
-                image_url: hash_map_src
-                    .get(&image_id)
-                    .map(|url| url.to_string())
-                    .unwrap_or_default(),
+                image_id,
             })
             .collect()
     }
@@ -78,7 +66,7 @@ impl Spot {
             id,
             address: spot_address,
             spot_org: SpotOrg::select(user_id, spot_id, conn),
-            image_url: Image::get_by_id(image_id, conn),
+            image_id,
         }
     }
 

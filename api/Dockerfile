@@ -1,7 +1,14 @@
 FROM rust:buster
 
 RUN apt update \
-    && apt install -y nginx nodejs npm \
+    && curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh \
+    && bash nodesource_setup.sh \
+    && apt install -y nodejs \
+    && node -v \
+    && npm -v \
+    && apt install -y nginx \
+    && apt install -f \
+    && apt update \
     && rustup default nightly \
     && rustup override set nightly \
     && rustup update \

@@ -5,7 +5,7 @@ authors = ["Stanislav Sagan"]
 edition = "2018"
 
 [dependencies]
-rocket = { version = "0.4.6", default-features = false }
+rocket = { version = "0.4.7", default-features = false }
 diesel = { version = "1.4.5", features = ["mysql", "chrono"] }
 chrono = { version = "*", features = ["serde"] }
 serde = "1.0.123"
@@ -22,16 +22,15 @@ dotenv = "0.15.0"
 reqwest = "0.11.0"
 sha2 = "0.9.3"
 radix_fmt = "1.0.0"
-files_to_sub_dirs = { git = "https://github.com/incker/files_to_sub_dirs", rev = "2b3ddbc" }
 telegram_oauth = { git = "https://github.com/incker/telegram_oauth", rev = "711360b" }
 diesel_migrations = "1.4.0"
 image = "0.23.13"
 geo = "0.17.0"
-geo-types = "0.7.0"
+geo-types = "0.7.1"
 base64 = "0.13.0"
 
 [dependencies.rocket_contrib]
-version = "0.4.6"
+version = "0.4.7"
 default-features = false
 features = ["json", "serve", "diesel_mysql_pool"]
 

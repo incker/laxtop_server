@@ -56,7 +56,7 @@ impl NewInvoice {
                         match last_invoice_id_res {
                             Ok(id) => id + 1,
                             Err(diesel::result::Error::NotFound) => 1,
-                            Err(error) => panic!(error),
+                            Err(error) => panic!("{}", error),
                         }
                     };
 

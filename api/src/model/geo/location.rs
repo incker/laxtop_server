@@ -41,7 +41,7 @@ impl Location {
     }
 
     pub fn validate_lng(lng: f32) -> Result<(), (String, String)> {
-        if lng < -180f32 || lng > 180f32 {
+        if !(-180f32..=180f32).contains(&lng) {
             Err((
                 "location".into(),
                 format!("Wrong longitude provided: {}", lng),
@@ -52,7 +52,7 @@ impl Location {
     }
 
     pub fn validate_lat(lat: f32) -> Result<(), (String, String)> {
-        if lat < -180f32 || lat > 180f32 {
+        if !(-90f32..=90f32).contains(&lat) {
             Err((
                 "location".into(),
                 format!("Wrong latitude provided: {}", lat),

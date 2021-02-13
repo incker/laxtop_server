@@ -1,15 +1,15 @@
 use diesel::{BoolExpressionMethods, ExpressionMethods, MysqlConnection, QueryDsl, RunQueryDsl};
-use geo::prelude::VincentyDistance;
 use geo::{Coordinate, Point};
+use geo::prelude::VincentyDistance;
 
-use crate::model::{Image, Spot, SpotAddress, SpotStatus, SupplierBounding};
+use crate::model::{Image, ImageRouter, Spot, SpotAddress, SpotStatus, SupplierBounding};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SpotBaseInfo {
     pub id: u32,
     pub address: SpotAddress,
-    #[serde(rename = "imageUrl")]
-    pub image_url: String,
+    #[serde(rename = "imageId")]
+    pub image_id: u32,
 }
 
 impl SpotBaseInfo {
@@ -46,8 +46,6 @@ impl SpotBaseInfo {
             .load(conn)
             .unwrap();
 
-        let mut image_ids = Vec::new();
-
         let spots_with_images: Vec<(u32, SpotAddress, u32)> = {
             let mut distance_spots = Vec::<(f32, (u32, SpotAddress, u32))>::new();
             for (id, spot_address, image_id, _status, lng, lat) in rows {
@@ -58,30 +56,19 @@ impl SpotBaseInfo {
                 println!("spot id: {}, distance: {}", &id, &distance);
                 if distance < radius_in_meters {
                     distance_spots.push((distance, (id, spot_address, image_id)));
-                    image_ids.push(image_id);
                 }
             }
             distance_spots.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap());
             distance_spots.into_iter().map(|v| v.1).collect()
         };
 
-        image_ids.sort_unstable();
-        let hash_map_src = Image::get_urls_by_ids(&image_ids, conn);
-
         let mut res: Vec<SpotBaseInfo> = spots_with_images
             .into_iter()
             .map(|(id, address, image_id)| {
-                // it is possible that image_id same for different spots,
-                // even if it is not desirable behavior to have same image_id,
-                // so we copy
-                let image_url = hash_map_src
-                    .get(&image_id)
-                    .map(ToString::to_string)
-                    .unwrap_or_default();
                 SpotBaseInfo {
                     id,
                     address,
-                    image_url,
+                    image_id,
                 }
             })
             .collect();
@@ -96,14 +83,14 @@ impl SpotBaseInfo {
         let Spot {
             id: spot_id,
             address,
-            image_url,
+            image_id: image_url,
             ..
         } = Spot::select(0, spot_id, conn);
 
         SpotBaseInfo {
             id: spot_id,
             address,
-            image_url,
+            image_id: image_url,
         }
     }
 
@@ -115,7 +102,7 @@ impl SpotBaseInfo {
                 spot_type: "Киоск".into(),
                 spot_name: "Тест".into(),
             },
-            image_url: Image::default_test_spot_image(),
+            image_id: 0,
         }
     }
 }

@@ -45,10 +45,6 @@ table! {
 table! {
     image (id) {
         id -> Unsigned<Integer>,
-        dir -> Varchar,
-        dir2 -> Varchar,
-        hash -> Varchar,
-        hash2 -> Varchar,
     }
 }
 

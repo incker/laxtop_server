@@ -4,19 +4,21 @@ use diesel::{
     QueryDsl, RunQueryDsl, update,
 };
 
-use crate::model::{Image, Location, Session, SupplierStatus};
-use crate::schema::supplier;
+use crate::model::{Image, ImageRouter, Location, Session, SupplierStatus};
+use crate::schema::{promo, supplier};
 
 const PROMO_LIFETIME_DAYS_AMOUNT: i64 = 14;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Queryable, Insertable)]
+#[table_name = "promo"]
 pub struct Promo {
     pub id: u32,
     #[serde(rename = "supplierId")]
     pub supplier_id: u32,
     #[serde(rename = "catId")]
     pub cat_id: u32,
-    pub url: String,
+    #[serde(rename = "imageId")]
+    pub image_id: u32,
     #[serde(rename = "createdAt")]
     pub created_at: NaiveDateTime,
 }
@@ -52,29 +54,14 @@ impl Promo {
 
 
     pub fn select_suppliers_active_promos(supplier_ids: &[u32], conn: &MysqlConnection) -> Vec<Self> {
-        use crate::schema::{promo, image};
-
+        use crate::schema::promo;
         promo::table
-            .inner_join(image::table.on(promo::dsl::image_id.eq(image::dsl::id)))
             .filter(promo::dsl::supplier_id.eq_any(supplier_ids)
                 .and(promo::dsl::created_at.ge(Promo::active_promos_creation_date()))
             )
-            .select((promo::dsl::id, promo::dsl::supplier_id, promo::dsl::cat_id, promo::dsl::created_at, image::dsl::dir, image::dsl::dir2, image::dsl::hash))
-            .load::<(u32, u32, u32, NaiveDateTime, String, String, String)>(conn)
+            .select((promo::dsl::id, promo::dsl::supplier_id, promo::dsl::cat_id, promo::dsl::image_id, promo::dsl::created_at))
+            .load::<Promo>(conn)
             .unwrap()
-            .into_iter()
-            .map(Promo::row_into_promo)
-            .collect::<Vec<_>>()
-    }
-
-    pub fn row_into_promo((id, supplier_id, cat_id, created_at, dir, dir2, hash): (u32, u32, u32, NaiveDateTime, String, String, String)) -> Promo {
-        Promo {
-            id,
-            supplier_id,
-            cat_id,
-            url: Image::build_url(&dir, &dir2, &hash),
-            created_at,
-        }
     }
 
     pub fn active_promos_creation_date() -> NaiveDateTime {

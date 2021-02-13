@@ -1,14 +1,12 @@
-#![feature(proc_macro_hygiene, decl_macro, core_panic)]
+#![feature(decl_macro)]
 #![allow(unused)]
 
 extern crate base64;
 extern crate chrono;
-extern crate core;
 #[macro_use]
 extern crate diesel;
 #[macro_use]
 extern crate diesel_migrations;
-extern crate files_to_sub_dirs;
 extern crate futures;
 extern crate geo;
 extern crate geo_types;
@@ -137,8 +135,14 @@ fn get_rocket() -> rocket::Rocket {
 // cd C:\dev\prj\laxtop_server
 // docker-compose exec api bash
 
-// cd node_firebase
-// node src/to_webp.js
-
 // todo: log to database (easy)
 // todo: admin page?
+
+// important:
+// todo: drop lock files from git
+// todo: test that images saved
+// todo: is outdated image path: default_test_spot_image
+// todo: default image path id is 0 or 1 ? (modify app sql)
+
+// todo: cargo fix
+// todo: cargo clippy
