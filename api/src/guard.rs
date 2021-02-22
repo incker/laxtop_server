@@ -54,9 +54,9 @@ impl<'a, 'r> FromRequest<'a, 'r> for SupplierId {
     }
 }
 
-impl Into<u32> for SupplierId {
-    fn into(self) -> u32 {
-        self.0
+impl From<SupplierId> for u32 {
+    fn from(supplier_id: SupplierId) -> u32 {
+        supplier_id.0
     }
 }
 
@@ -82,9 +82,9 @@ impl UserId {
     }
 }
 
-impl Into<u32> for UserId {
-    fn into(self) -> u32 {
-        self.0
+impl From<UserId> for u32 {
+    fn from(user_id: UserId) -> u32 {
+        user_id.0
     }
 }
 
@@ -142,9 +142,9 @@ impl<'a, 'r> FromRequest<'a, 'r> for AgentId {
     }
 }
 
-impl Into<u32> for AgentId {
-    fn into(self) -> u32 {
-        self.0
+impl From<AgentId> for u32 {
+    fn from(agent_id: AgentId) -> u32 {
+        agent_id.0
     }
 }
 

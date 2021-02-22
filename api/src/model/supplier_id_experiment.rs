@@ -9,9 +9,9 @@ use diesel::Queryable;
 #[derive(Debug, Serialize, Deserialize, QueryId)]
 pub struct SpotId(pub u32);
 
-impl Into<u32> for SpotId {
-    fn into(self) -> u32 {
-        self.0
+impl From<SpotId> for u32 {
+    fn from(spot_id: SpotId) -> u32 {
+        spot_id.0
     }
 }
 

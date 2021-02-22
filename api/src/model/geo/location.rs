@@ -12,16 +12,16 @@ pub struct Location {
     pub lat: f32,
 }
 
-impl Into<(f32, f32)> for Location {
-    fn into(self) -> (f32, f32) {
-        let Location { lng, lat } = self;
+impl From<Location> for (f32, f32) {
+    fn from(location: Location) -> (f32, f32) {
+        let Location { lng, lat } = location;
         (lng, lat)
     }
 }
 
-impl Into<Coordinate<f32>> for Location {
-    fn into(self) -> Coordinate<f32> {
-        let Location { lng, lat } = self;
+impl From<Location> for Coordinate<f32> {
+    fn from(location: Location) -> Coordinate<f32> {
+        let Location { lng, lat } = location;
         Coordinate { x: lng, y: lat }
     }
 }
