@@ -14,15 +14,13 @@ pub struct Location {
 
 impl From<Location> for (f32, f32) {
     fn from(location: Location) -> (f32, f32) {
-        let Location { lng, lat } = location;
-        (lng, lat)
+        (location.lng, location.lat)
     }
 }
 
 impl From<Location> for Coordinate<f32> {
     fn from(location: Location) -> Coordinate<f32> {
-        let Location { lng, lat } = location;
-        Coordinate { x: lng, y: lat }
+        Coordinate { x: location.lng, y: location.lat }
     }
 }
 
