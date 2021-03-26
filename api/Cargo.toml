@@ -8,16 +8,16 @@ edition = "2018"
 rocket = { version = "0.4.7", default-features = false }
 diesel = { version = "1.4.6", features = ["mysql", "chrono"] }
 chrono = { version = "*", features = ["serde"] }
-serde = "1.0.124"
-serde_derive = "1.0.124"
+serde = "1.0.125"
+serde_derive = "1.0.125"
 serde_json = "1.0.64"
 rand = "0.8.3"
 regex = "1.4.5"
-validator = "0.12.0"
-validator_derive = "0.12.0"
+validator = "0.13.0"
+validator_derive = "0.13.0"
 futures = "0.3.13"
 tgbot = "0.12.1"
-tokio = { version = "1.3.0", features = ["rt-multi-thread"] }
+tokio = { version = "1.4.0", features = ["rt-multi-thread"] }
 dotenv = "0.15.0"
 reqwest = "0.11.2"
 sha2 = "0.9.3"
