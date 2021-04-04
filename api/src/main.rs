@@ -132,7 +132,7 @@ fn get_rocket() -> rocket::Rocket {
 // cargo fix --allow-no-vcs
 // ngrok http 3000
 
-// cd C:\dev\prj\laxtop_server
+// cd C:\dev\prj\laxtop\laxtop_server
 // docker-compose exec api bash
 
 // todo: log to database (easy)
