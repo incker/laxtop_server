@@ -8,3 +8,8 @@
 firebase_private_key.json
 
 Cargo.lock
+
+# saved user images
+/static/
+# default image
+!/static/i/o/000/00/00.jpg
