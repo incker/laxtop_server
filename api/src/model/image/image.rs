@@ -80,9 +80,4 @@ impl Image {
 
         // todo thumbnail and so on...
     }
-
-    // TODO is outdated image path
-    pub fn default_test_spot_image() -> String {
-        "aa/aa/test_spot.webp".into()
-    }
 }

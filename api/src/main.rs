@@ -140,5 +140,3 @@ fn get_rocket() -> rocket::Rocket {
 
 // important:
 // todo: test that images saved
-// todo: is outdated image path: default_test_spot_image
-// todo: default image path id is 0 or 1 ? (modify app sql)

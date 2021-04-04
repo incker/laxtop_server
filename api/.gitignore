@@ -11,5 +11,7 @@ Cargo.lock
 
 # saved user images
 /static/
-# default image
+# default none spot image
 !/static/i/o/000/00/00.jpg
+# default test spot image
+!/static/i/o/000/00/01.jpg
