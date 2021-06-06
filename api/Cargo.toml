@@ -5,11 +5,11 @@ authors = ["Stanislav Sagan"]
 edition = "2018"
 
 [dependencies]
-rocket = { version = "0.4.7", default-features = false }
+rocket = { version = "0.4.10", default-features = false }
 diesel = { version = "1.4.6", features = ["mysql", "chrono"] }
 chrono = { version = "*", features = ["serde"] }
-serde = "1.0.125"
-serde_derive = "1.0.125"
+serde = "1.0.126"
+serde_derive = "1.0.126"
 serde_json = "1.0.64"
 rand = "0.8.3"
 regex = "1.5.4"
@@ -17,7 +17,7 @@ validator = "0.13.0"
 validator_derive = "0.13.0"
 futures = "0.3.15"
 tgbot = "0.13.0"
-tokio = { version = "1.5.0", features = ["rt-multi-thread"] }
+tokio = { version = "1.6.1", features = ["rt-multi-thread"] }
 dotenv = "0.15.0"
 reqwest = "0.11.3"
 sha2 = "0.9.5"
@@ -30,7 +30,7 @@ geo-types = "0.7.2"
 base64 = "0.13.0"
 
 [dependencies.rocket_contrib]
-version = "0.4.7"
+version = "0.4.10"
 default-features = false
 features = ["json", "serve", "diesel_mysql_pool"]
 

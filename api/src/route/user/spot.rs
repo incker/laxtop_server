@@ -97,7 +97,7 @@ fn add_existing_spot(
         Spot::select(user_id.into(), spot_id, db_conn.deref())
     } else {
         // if spot id is 1 - create test spot
-        NewSpot::create_test_spot(OwnerType::User, user_id.into(), &location, db_conn.deref())
+        NewSpot::create_test_spot(OwnerType::User, user_id.into(), *location, db_conn.deref())
     };
 
     Ok(Json(spot))

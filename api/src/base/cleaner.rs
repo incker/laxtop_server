@@ -76,12 +76,12 @@ impl Default for MaxCleaner {
 impl MaxCleaner {
     pub fn clean_all(&self, text: &str) -> Option<String> {
         let t0 = &self.cleaners[0].clean(text.trim());
-        let t1 = &self.cleaners[1].clean(&t0);
-        let t2 = &self.cleaners[2].clean(&t1);
-        let t3 = &self.cleaners[3].clean(&t2);
-        let t4 = &self.cleaners[4].clean(&t3);
+        let t1 = &self.cleaners[1].clean(t0);
+        let t2 = &self.cleaners[2].clean(t1);
+        let t3 = &self.cleaners[3].clean(t2);
+        let t4 = &self.cleaners[4].clean(t3);
 
-        let res: &str = &t4;
+        let res: &str = t4;
         if res == text {
             None
         } else {

@@ -6,7 +6,7 @@ use crate::base::RespErrors;
 use crate::model::Spot;
 
 // field sequence is equal to Coordinate struct
-#[derive(Debug, Default, Queryable, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Default, Queryable, PartialEq, Serialize, Deserialize, Clone, Copy)]
 pub struct Location {
     pub lng: f32,
     pub lat: f32,
@@ -34,7 +34,7 @@ impl Location {
             .ok()
     }
 
-    pub fn validate(&self) -> Result<(), (String, String)> {
+    pub fn validate(self) -> Result<(), (String, String)> {
         Location::validate_lng(self.lng).and(Location::validate_lat(self.lat))
     }
 
@@ -60,18 +60,18 @@ impl Location {
         }
     }
 
-    pub fn rocket_validate(&self) -> Result<(), Json<RespErrors>> {
+    pub fn rocket_validate(self) -> Result<(), Json<RespErrors>> {
         self.validate()
             .map_err(|error| Json(RespErrors::new_error(error)))
     }
 
     pub fn rocket_validate_distance(
-        &self,
+        self,
         spot_id: u32,
         radius: f32,
         conn: &MysqlConnection,
     ) -> Result<(), Json<RespErrors>> {
-        Spot::validate_distance(spot_id, &self, radius, conn)
+        Spot::validate_distance(spot_id, self, radius, conn)
             .map_err(|err| Json(RespErrors::new(vec![err])))
     }
 }

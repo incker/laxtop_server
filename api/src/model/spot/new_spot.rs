@@ -39,7 +39,7 @@ impl NewSpot {
             })
             .expect("could not insert in NewSpot::new_default");
 
-        Spot::attach_to_suppliers(spot_id, &self.location, conn);
+        Spot::attach_to_suppliers(spot_id, self.location, conn);
 
         if OwnerType::User == creator_type {
             UserSpot::insert_values(creator_id, spot_id, conn);
@@ -52,7 +52,7 @@ impl NewSpot {
     pub fn create_test_spot(
         creator_type: OwnerType,
         creator_id: u32,
-        location: &Location,
+        location: Location,
         conn: &MysqlConnection,
     ) -> Spot {
         use crate::schema::spot;
@@ -86,7 +86,7 @@ impl NewSpot {
             })
             .expect("could not insert in NewSpot::create_test_spot");
 
-        Spot::attach_to_suppliers(spot_id, &location, conn);
+        Spot::attach_to_suppliers(spot_id, location, conn);
 
         if OwnerType::User == creator_type {
             UserSpot::insert_values(creator_id, spot_id, conn);

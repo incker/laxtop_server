@@ -72,7 +72,7 @@ impl Spot {
 
     pub fn validate_distance(
         spot_id: u32,
-        location: &Location,
+        location: Location,
         distance: f32,
         conn: &MysqlConnection,
     ) -> Result<(), (String, String)> {
@@ -125,12 +125,12 @@ impl Spot {
             })
     }
 
-    pub fn attach_to_suppliers(spot_id: u32, location: &Location, conn: &MysqlConnection) {
+    pub fn attach_to_suppliers(spot_id: u32, location: Location, conn: &MysqlConnection) {
         let supplier_ids = Spot::force_count_covered_suppliers(location, conn);
         SpotSupplier::set_spot_suppliers(spot_id, &supplier_ids, conn);
     }
 
-    fn force_count_covered_suppliers(location: &Location, conn: &MysqlConnection) -> Vec<u32> {
+    fn force_count_covered_suppliers(location: Location, conn: &MysqlConnection) -> Vec<u32> {
         use crate::schema::supplier;
         use crate::schema::supplier_polygon;
 

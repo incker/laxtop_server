@@ -41,7 +41,7 @@ impl Product {
         };
 
         for product_id in product_ids {
-            if !hash_set.contains(&product_id) {
+            if !hash_set.contains(product_id) {
                 return Err(format!(
                     "product_id: {} does not belong to supplier {}",
                     product_id, supplier_id
