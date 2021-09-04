@@ -8,19 +8,19 @@ edition = "2018"
 rocket = { version = "0.4.10", default-features = false }
 diesel = { version = "1.4.7", features = ["mysql", "chrono"] }
 chrono = { version = "*", features = ["serde"] }
-serde = "1.0.127"
-serde_derive = "1.0.127"
-serde_json = "1.0.66"
+serde = "1.0.130"
+serde_derive = "1.0.130"
+serde_json = "1.0.67"
 rand = "0.8.4"
 regex = "1.5.4"
 validator = "0.14.0"
 validator_derive = "0.14.0"
-futures = "0.3.16"
+futures = "0.3.17"
 tgbot = "0.13.0"
-tokio = { version = "1.10.0", features = ["rt-multi-thread"] }
+tokio = { version = "1.11.0", features = ["rt-multi-thread"] }
 dotenv = "0.15.0"
 reqwest = "0.11.4"
-sha2 = "0.9.5"
+sha2 = "0.9.6"
 radix_fmt = "1.0.0"
 telegram_oauth = { git = "https://github.com/incker/telegram_oauth", rev = "711360b" }
 diesel_migrations = "1.4.0"
