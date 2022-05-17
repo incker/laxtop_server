@@ -20,7 +20,7 @@ tgbot = "0.14.0"
 tokio = { version = "1.18.2", features = ["rt-multi-thread"] }
 dotenv = "0.15.0"
 reqwest = "0.11.10"
-sha2 = "0.9.8"
+sha2 = "0.10.2"
 radix_fmt = "1.0.0"
 telegram_oauth = { git = "https://github.com/incker/telegram_oauth", rev = "711360b" }
 diesel_migrations = "1.4.0"
