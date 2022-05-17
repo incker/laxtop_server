@@ -1,7 +1,7 @@
 use tgbot::{
+    Api,
     methods::{SendMessage, SetWebhook},
     types::ParseMode,
-    Api, Config,
 };
 use tokio::runtime::Runtime;
 
@@ -41,6 +41,5 @@ pub fn set_webhook() -> Result<(), String> {
 
 pub fn get_telegram_api() -> Api {
     let token = dotenv::var("TELEGRAM_TOKEN").expect("TELEGRAM_TOKEN is not set");
-    let config = Config::new(token);
-    Api::new(config).expect("Failed to create API")
+    Api::new(token).expect("Failed to create API")
 }
